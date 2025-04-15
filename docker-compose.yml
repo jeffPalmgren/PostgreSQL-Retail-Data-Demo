@@ -1,0 +1,13 @@
+services:
+    db:
+        image: postgres:14.7
+        restart: always
+        container_name: retail_data_pg
+        ports:
+            - "5435:5435"
+        environment:
+            POSTGRES_USER: DataOwner
+            POSTGRES_PASSWORD: "I own the data"
+            POSTGRES_DB: RetailData
+        volumes:
+            - ./init:/docker-entrypoint-initdb.d
