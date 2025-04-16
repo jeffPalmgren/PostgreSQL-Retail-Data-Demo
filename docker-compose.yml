@@ -1,13 +1,13 @@
 services:
     db:
-        image: postgres:14.7
+        image: postgres:${POSTGRES_VERSION:-14.7}
         restart: always
         container_name: retail_data_pg
         ports:
-            - "5435:5435"
+            - "${POSTGRES_PORT:-5432}:5432"
         environment:
-            POSTGRES_USER: DataOwner
-            POSTGRES_PASSWORD: "I own the data"
-            POSTGRES_DB: RetailData
+            POSTGRES_USER: ${POSTGRES_USER:-postgres}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+            POSTGRES_DB: ${POSTGRES_DB:-RetailDataDemo}
         volumes:
             - ./init:/docker-entrypoint-initdb.d
